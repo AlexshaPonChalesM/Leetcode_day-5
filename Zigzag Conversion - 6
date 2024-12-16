@@ -1,0 +1,52 @@
+char* convert(char* s, int n) {
+        int len=strlen(s);
+        char arr[n][len];
+        if(n==1 && len>=n)
+        return s;
+        memset(arr,0,sizeof(arr));
+        int row=0,col=0,up=1;
+        for(int i=0;i<len;i++)
+        {
+            arr[row][col]=s[i];
+            if(up)
+            {
+                if(row==n-1)
+                {
+                    up=0;
+                    row--;
+                    col++;
+                }
+                else
+                {
+                    row++;
+                }
+            }
+            else
+            {
+                if(row==0)
+                {
+                    up=1;
+                    row++;
+                }
+                else
+                {
+                    row--;
+                    col++;
+                }
+            }
+        }
+        char* ans=(char*)malloc((len+1)*sizeof(char*));
+        int k=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<col+1;j++)
+            {
+                if(arr[i][j]!=0)
+                {
+                    ans[k++]=arr[i][j];
+                }
+            }
+        }
+        ans[k]='\0';
+        return ans;
+    }
