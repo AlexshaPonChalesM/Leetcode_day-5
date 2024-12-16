@@ -1,0 +1,21 @@
+bool searchMatrix(int** matrix, int matrixSize, int* matrixColSize, int target) {
+    if (matrixSize == 0 || matrixColSize[0] == 0) return false;
+    int low=0;
+    int high = matrixSize * matrixColSize[0] - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;  
+        int mid2 = mid / matrixColSize[0];
+        int mid1 = mid % matrixColSize[0];
+        if(matrix[mid2][mid1]==target)
+        return true;
+        else if(matrix[mid2][mid1]>target)
+        {
+            high=mid-1;
+        }
+        else
+        {
+            low=mid+1;
+        }
+    }
+    return false;
+}
